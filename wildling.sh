@@ -2,8 +2,19 @@
 
 projectname="$1"
 deviceport="/dev/ttyUSB3"
-
+PYTHON_PATH=""
 BASETEMPLATE="https://github.com/programmervsworld/wildbits-basic-template.git"
+
+if command -v python3 > /dev/null 2>&1; then
+	PYTHON_PATH=$(command -v python3)
+elif command -v python > /dev/null 2>&1; then
+	PYTHON_PATH=$(command -v python)
+else
+	echo "Python isn't installed. You have to have it to run this script."
+	exit
+fi
+
+echo "Python found at $PYTHON_PATH..."
 
 wildbits_banner() {
     local -a art=(
@@ -56,7 +67,7 @@ fi
 
 cd "$projectname" || exit
 
-python3 fnxmgr.zip --list-ports
+$PYTHON_PATH fnxmgr.zip --list-ports
 
 output=""
 
@@ -64,7 +75,7 @@ until [[ -n $output ]]; do
 	echo "I need to see what port the device is on, if I ask again assume I couldn't reach it...."
 	read -e -p "While device port should I use? [$deviceport]:" -i "$deviceport" deviceport
 	echo "Trying to communicate with port...."
-	output=$(timeout 5 python3 fnxmgr.zip --port "$deviceport" --revision)
+	output=$(timeout 5 "$PYTHON_PATH" fnxmgr.zip --port "$deviceport" --revision)
 done
 
 
