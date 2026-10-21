@@ -7,7 +7,7 @@ This very small bash cli tool was designed to help me start up Foenix/Wildbits F
 To start a basic project just grab the script from source control:
 
 ```bash
-curl url > wildling.sh
+curl https://raw.githubusercontent.com/programmervsworld/wildling-cli/refs/heads/main/wildling.sh > wildling.sh
 chmod +x wildling.sh
 ./wildling <your project name>
 ```
