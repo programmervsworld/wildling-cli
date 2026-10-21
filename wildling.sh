@@ -46,7 +46,7 @@ echo "Creating project: $projectname"
 
 if [ -d "./$projectname" ]; then
 	echo "Directory already exists. Applying changes to existing dir."
-	cd $projectname
+	cd "$projectname" || exit
 	git pull
 	cd ..
 else
@@ -54,7 +54,7 @@ else
 	git clone "$BASETEMPLATE" "$projectname"
 fi
 
-cd "$projectname"
+cd "$projectname" || exit
 
 python3 fnxmgr.zip --list-ports
 
