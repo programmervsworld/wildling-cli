@@ -3,7 +3,7 @@
 projectname="$1"
 deviceport="/dev/ttyUSB3"
 
-BASETEMPLATE="http://192.168.1.59:3002/jdowning/wildbits-basic-template.git"
+BASETEMPLATE="https://github.com/programmervsworld/wildbits-basic-template.git"
 
 wildbits_banner() {
     local -a art=(
